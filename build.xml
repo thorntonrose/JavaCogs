@@ -1,0 +1,95 @@
+<!-- JavaCogs build file -->
+<project name="JavaCogs" default="jar">
+   <!-- properties -->
+   <property name="version"      value="1.6"/>
+   <property name="src"          value="**"/>
+   <property name="srcDir"       value="src"/>
+   <property name="classesDir"   value="classes"/>
+   <property name="libDir"       value="lib"/>
+   <property name="metaDir"      value="META-INF"/>
+   <property name="javadocsDir"  value="docs/api"/>
+   <property name="distFile"     value="${ant.project.name}-${version}.zip"/>
+   
+   <!-- build -->
+   <target name="build" depends="clean,jar,javadoc,dist"/>
+
+   <!-- compile -->
+   <target name="compile">
+      <mkdir dir="${classesDir}"/>
+      
+      <!-- Compile classes. -->
+      <javac srcdir="${srcDir}" destdir="${classesDir}" includes="${src}"/>
+
+      <!-- Copy properties files. -->
+      <copy todir="${classesDir}">
+         <fileset dir="${srcDir}" includes="**/*.properties"/>
+      </copy>
+   </target>
+
+   <!-- jar -->
+   <target name="jar" depends="compile">
+      <!-- Copy manifest. -->
+      <copy overwrite="yes" 
+            file="${srcDir}/MANIFEST.MF" 
+            tofile="${metaDir}/MANIFEST.MF">
+         <filterset>
+            <filter token="VERSION" value="${version}"/>
+         </filterset>
+      </copy>
+
+      <!-- Create jar. -->
+      <jar jarfile="${libDir}/javacogs.jar" manifest="${metaDir}/MANIFEST.MF">
+         <fileset dir="${classesDir}" includes="org/javacogs/**"/>
+         <fileset dir="." includes="docs/readme.txt"/>
+      </jar>
+   </target>
+
+   <!-- javadoc -->
+   <target name="javadoc" depends="compile">
+      <delete dir="${javadocsDir}"/>
+      <mkdir dir="${javadocsDir}"/>
+      <javadoc
+         classpath="${classesDir}"
+         sourcepath="${srcDir}"
+         destdir="${javadocsDir}"
+         packagenames="org.javacogs"
+         protected="true"
+         author="true"
+         use="true"
+         version="true"
+         windowtitle="JavaCogs ${version}"
+         doctitle="JavaCogs ${version}"/>
+   </target>
+
+   <!-- dist -->
+   <target name="dist" depends="jar">
+      <zip basedir="."
+         zipfile="${distFile}"
+         includes="**"
+         excludes="${distFile},${classesDir}/**">
+      </zip>
+   </target>
+
+   <!-- clean -->
+   <target name="clean">
+      <!-- jars -->
+      <delete>
+         <fileset dir="${libDir}" includes="*.jar"/>
+      </delete>
+      
+      <!-- manifest -->
+      <delete file="${metaDir}/MANIFEST.MF"/>
+
+      <!-- classes -->
+      <delete dir="${classesDir}"/>
+      
+      <!-- javadocs -->
+      <delete dir="${javadocsDir}"/>
+   </target>
+   
+   <!-- test -->
+   <target name="test">
+      <java classpath="${libDir}/javacogs.jar:${classesDir}" 
+         classname="testers.${class}"/>
+   </target>
+</project>

@@ -1,0 +1,89 @@
+Ideas:
+
+   - Re-package to match JDK: org.javacogs.sql, .util, .swing, .io, .text, ...
+   - ObjectTableModel
+   - Database I/O
+   - TextViewer
+   - TextEditor
+   - HtmlViewer
+   - Multi-field input dialog
+   
+-----
+
+SimpleObjectDatabase:
+
+SimpleObjectDatabase(String propFileName)
+open(String username, String password)
+close()
+
+getProperties()
+getUrl()
+getDriver()
+getConnection()
+
+ResultSet query(String[] fields, String where, String[] orderBy, String having)
+Collection query(String[] fields, String where, String[] orderBy, String having, Class class)
+insert(Object obj)
+update(Object obj)
+update(Object obj, String[] dirtyFields)
+delete(String keyField, Class keyClass)
+
+// Properties file contains URL, driver, class mappings
+
+-----
+
+Database:
+
+Database(String url, Class driver)
+Database(Properties props)
+
+getUrl()
+getDriver()
+getConnection()
+
+open(String username, String password)
+close()
+
+Collection query(String[] from, String where, String[] orderBy, String having)
+
+ResultSet openQuery(String[] from, String where, String[] orderBy, String having)
+void closeQuery(ResultSet query);
+
+void insert(String table, String fields[], String values[])
+void update(String table, String fields[], String values[], String where)
+void delete(String table, String where)
+void execute(String sql)
+CallableStatement prepareCall(String sql)
+
+-----
+
+String functions:
+
+   * indexOf
+   * lastIndexOf
+   - upper
+   - lower
+   * left
+   * right
+   * substr
+   - trimLeft
+   - trimRight
+   - trim
+   * padLeft
+   * padRight
+   * padCenter
+   - split (toStringArray)
+   - join (toDelimitedString)
+   * left
+   * right
+   - remove
+   - removeAt
+   * wordWrap
+   * wrap
+   * replace
+   * replicate
+   * hexEncode
+   * hexDecode
+   * copy
+
+* = done

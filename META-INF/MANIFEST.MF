@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Main-Class: org.javacogs.JavaCogs
+
+Name: org/javacogs/
+Specification-Title: JavaCogs
+Specification-Version: 1.6
+Specification-Vendor: Thornton Rose
+Implementation-Title: org.javacogs
+Implementation-Version: 1.6
+Implementation-Vendor: Thornton Rose
+
+Name: org/javacogs/JavaCogs.class

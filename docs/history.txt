@@ -1,0 +1,49 @@
+JavaCogs History
+
+1.6, 10/16/01:
+   * Separated classes into subpackages.
+   * Added examples.
+   * Updated:
+      * StrUtil
+      * PropertiesFile
+      * RotCipher
+      * ObjectGUID
+   * Cleaned up build file.
+   
+1.5, 9/9/01:
+   * Updated BeanProxy.
+   * Added DynamicBeanProxy.
+   * Added PropertiesFile.
+   * Fixed build file to add classes dir. to distribution archive.
+   * Moved to Ant build file.
+   
+1.4, 03/10/01:
+   * Added manifest.
+   * Changed project to compile to classes dir.
+   * Changed makejars to build jar from classes dir.
+   * Combined Rot13, Rto13n5, and RotAscii into RotCipher.
+   * Moved META-INF from src to project root.
+
+1.3, 12/04/00:
+   * StrUtil:
+      * Added indexOf() for StringBuffer.
+      * Added replace().
+      * Added left().
+      * Added right().
+      * Added hexEncode() for StringBuffer.
+      * Added hexDecode() for StringBuffer.
+      * Updated comments.
+   * Added docs/readme.txt.
+   * Added docs/changelog.txt.
+   * makedocs:
+      * Set doc. level to "protected".
+   * makejar:
+      * Include docs/readme.txt.
+   * Added Sequence class.
+
+1.2, 11/16/00:
+   * Renamed RotationCipher to RotAscii.
+   * Added Rot13n5.
+
+1.x - v1.0:
+   * Don't remember.
